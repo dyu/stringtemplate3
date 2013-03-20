@@ -75,9 +75,12 @@ public void reportError(RecognitionException e) {
 group[StringTemplateGroup g]
 {
 this.group = g;
+String ns = "", sns = "";
 }
-	:	"group" name:ID {g.setName(name.getText());}
-		( COLON s:ID {g.setSuperGroup(s.getText());} )?
+	:	"group" name:ID (DOT namesuffix:ID {ns = ns + "." + namesuffix.getText();})*
+        {g.setName(name.getText() + ns);}
+		( COLON sname:ID (DOT snamesuffix:ID {sns = sns + "." + snamesuffix.getText();})*
+        {g.setSuperGroup(sname.getText() + sns);} )?
 	    ( "implements" i:ID {g.implementInterface(i.getText());}
 	      (COMMA i2:ID {g.implementInterface(i2.getText());} )*
 	    )?
@@ -248,7 +251,7 @@ ID
 options {
     testLiterals=true;
 }
-	:	('$'|'a'..'z'|'A'..'Z'|'_') ('$'|'.'|'a'..'z'|'A'..'Z'|'0'..'9'|'-'|'_')*
+	:	('$'|'a'..'z'|'A'..'Z'|'_') ('$'|'a'..'z'|'A'..'Z'|'0'..'9'|'-'|'_')*
 	;
 
 STRING
