@@ -234,7 +234,7 @@ There are currently about 600 StringTemplate source downloads a month.
                 <version>2.1</version>
                 <configuration>
                     <sourceDirectory>src/org/antlr/stringtemplate/language</sourceDirectory>
-                    <grammars>template.g, angle.bracket.template.g, square.bracket.template.g, action.g, eval.g, group.g, interface.g</grammars>
+                    <grammars>template.g, angle.bracket.template.g, square.bracket.template.g, double.curly.bracket.template.g, action.g, eval.g, group.g, interface.g</grammars>
                 </configuration>
                 <executions>
                     <execution>
